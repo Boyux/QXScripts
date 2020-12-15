@@ -23,7 +23,7 @@ switch (true) {
             obj['data']['items'] = items;
             body = JSON.stringify(obj);
         } catch (err) {
-            console.error(`推荐去广告出现异常：${err}`);
+            console.log(`推荐去广告出现异常：${err}`);
         }
         break;
         // 开屏广告处理
@@ -46,7 +46,7 @@ switch (true) {
                 body = JSON.stringify(obj);
             }
         } catch (err) {
-            console.error(`开屏广告处理出现异常：${err}`);
+            console.log(`开屏广告处理出现异常：${err}`);
         }
         break;
         // 标签页处理，如去除会员购等等
@@ -70,7 +70,7 @@ switch (true) {
             }
             body = JSON.stringify(obj);
         } catch (err) {
-            console.error(`标签页处理出现异常：${err}`);
+            console.log(`标签页处理出现异常：${err}`);
         }
         break;
         // 我的页面处理，去除一些推广按钮
@@ -94,7 +94,7 @@ switch (true) {
             obj['data']['sections_v2'][3]['items'] = items3;
             body = JSON.stringify(obj);
         } catch (err) {
-            console.error(`我的页面处理出现异常：${err}`);
+            console.log(`我的页面处理出现异常：${err}`);
         }
         break;
         // 直播去广告
@@ -104,7 +104,7 @@ switch (true) {
             obj['data']['activity_banner_info'] = null;
             body = JSON.stringify(obj);
         } catch (err) {
-            console.error(`直播去广告出现异常：${err}`);
+            console.log(`直播去广告出现异常：${err}`);
         }
         break;
         // 追番去广告
@@ -117,11 +117,11 @@ switch (true) {
             delete obj['data']['attentions'];
             body = JSON.stringify(obj);
         } catch (err) {
-            console.error(`追番去广告出现异常：${err}`);
+            console.log(`追番去广告出现异常：${err}`);
         }
         break;
     default:
-        console.error('Error 0x80');
+        console.log(`unhandled URL: ${$request.url}`);
         break;
 }
 
