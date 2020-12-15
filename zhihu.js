@@ -125,7 +125,6 @@ switch (true) {
     case /^https?:\/\/api\.zhihu\.com\/search\/preset_words\?/.test($request.url):
         try {
             if (!!$response.body) {
-                console.log(`预置关键字返回：${$response.body}`);
                 let obj = JSON.parse($response.body);
                 if (obj.hasOwnProperty('preset_words') && obj['preset_words']['words']) {
                     let words = obj['preset_words']['words'].filter((element) => {
