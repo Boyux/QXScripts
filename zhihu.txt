@@ -1,7 +1,7 @@
 hostname = www.zhihu.com, api.zhihu.com, appcloud2.zhihu.com, zhuanlan.zhihu.com
 
 # 知乎处理用户信息
-^https?:\/\/api\.zhihu\.com\/people\/ url script-response-body https://raw.githubusercontent.com/Boyux/QXScripts/main/zhihu.js
+^https?:\/\/api\.zhihu\.com\/people\/((?!self).)*$ url script-response-body https://raw.githubusercontent.com/Boyux/QXScripts/main/zhihu.js
 
 # 知乎信息流去广告
 ^https?:\/\/api\.zhihu\.com\/(moments|topstory)(\/|\?)?(recommend|action=|feed_type=)(?!\/people) url script-response-body https://raw.githubusercontent.com/Boyux/QXScripts/main/zhihu.js
