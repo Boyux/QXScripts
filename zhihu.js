@@ -1,7 +1,7 @@
 let body = null;
 
 switch (true) {
-        // 去除MCN信息
+    // 去除MCN信息
     case /^https?:\/\/api\.zhihu\.com\/people\/((?!self).)*$/.test($request.url):
         try {
             let obj = JSON.parse($response.body);
@@ -12,14 +12,15 @@ switch (true) {
         }
         break;
 
-        // 推荐去广告
+    // 推荐去广告
     case /^https:\/\/api\.zhihu\.com\/topstory\/recommend\?/.test($request.url):
         try {
             let obj = JSON.parse($response.body);
             let data = obj['data'].filter((element) => {
                 let flag = !(
                     element['card_type'] === 'slot_event_card' ||
-                    element.hasOwnProperty('ad')
+                    element.hasOwnProperty('ad') ||
+                    (element['extra']['type'] != 'article' && element['extra']['type'] != 'answer')
                 );
                 return flag;
             });
@@ -30,7 +31,7 @@ switch (true) {
         }
         break;
 
-        // 关注列表去广告
+    // 关注列表去广告
     case /^https?:\/\/api\.zhihu\.com\/moments(\/|\?)?(recommend|action=|feed_type=)(?!\/people)/.test($request.url):
         try {
             let obj = JSON.parse($response.body);
@@ -69,7 +70,7 @@ switch (true) {
         }
         break;
 
-        // 回答列表去广告
+    // 回答列表去广告
     case /^https?:\/\/api\.zhihu\.com\/v4\/questions/.test($request.url):
         try {
             let obj = JSON.parse($response.body);
@@ -81,10 +82,10 @@ switch (true) {
         }
         break;
 
-        // 拦截官方账号推广消息
+    // 拦截官方账号推广消息
     case /^https?:\/\/api\.zhihu\.com\/notifications\/v3\/timeline\/entry\/system_message/.test($request.url):
         try {
-            const sysmsg_blacklist = ['知乎小伙伴', '知乎视频', '知乎团队', '知乎礼券', '知乎读书会团队'];
+            const sysmsg_blacklist = ['知乎小伙伴', '知乎视频', '知乎团队', '知乎礼券', '知乎读书会团队', '知乎活动助手'];
             let obj = JSON.parse($response.body);
             let data = obj['data'].filter((element) => { return sysmsg_blacklist.indexOf(element['content']['title']) < 0 })
             obj['data'] = data;
@@ -94,7 +95,7 @@ switch (true) {
         }
         break;
 
-        // 屏蔽官方营销消息
+    // 屏蔽官方营销消息
     case /^https?:\/\/api\.zhihu\.com\/notifications\/v3\/message\?/.test($request.url):
         try {
             let obj = JSON.parse($response.body);
@@ -121,7 +122,7 @@ switch (true) {
         }
         break;
 
-        // 去除预置关键字广告
+    // 去除预置关键字广告
     case /^https?:\/\/api\.zhihu\.com\/search\/preset_words\?/.test($request.url):
         try {
             if (!!$response.body) {
@@ -139,7 +140,7 @@ switch (true) {
         }
         break;
 
-        // 优化知乎软件配置
+    // 优化知乎软件配置
     case /^https?:\/\/appcloud2\.zhihu\.com\/v\d+\/config/.test($request.url):
         try {
             if (!!$response.body) {
