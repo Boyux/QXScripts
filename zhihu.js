@@ -154,7 +154,7 @@ switch (true) {
         }
         break;
     default:
-        console.warn('触发意外的请求处理，请确认脚本或复写配置正常。');
+        console.error(`URL: ${$request.url}`);
         break;
 }
 
