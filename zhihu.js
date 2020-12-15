@@ -8,7 +8,7 @@ switch (true) {
             delete obj['mcn_user_info'];
             body = JSON.stringify(obj);
         } catch (err) {
-            console.error(`知乎去除MCN信息出现异常：${err}`);
+            console.log(`知乎去除MCN信息出现异常：${err}`);
         }
         break;
 
@@ -26,7 +26,7 @@ switch (true) {
             obj['data'] = data;
             body = JSON.stringify(obj);
         } catch (err) {
-            console.error(`知乎推荐列表去广告出现异常：${err}`);
+            console.log(`知乎推荐列表去广告出现异常：${err}`);
         }
         break;
 
@@ -65,7 +65,7 @@ switch (true) {
             obj['data'] = data;
             body = JSON.stringify(obj);
         } catch (err) {
-            console.error(`知乎关注列表去广告出现异常：${err}`);
+            console.log(`知乎关注列表去广告出现异常：${err}`);
         }
         break;
 
@@ -77,7 +77,7 @@ switch (true) {
             delete obj['roundtable_info'];
             body = JSON.stringify(obj);
         } catch (err) {
-            console.error(`知乎回答列表去广告出现异常：${err}`);
+            console.log(`知乎回答列表去广告出现异常：${err}`);
         }
         break;
 
@@ -90,7 +90,7 @@ switch (true) {
             obj['data'] = data;
             body = JSON.stringify(obj);
         } catch (err) {
-            console.error(`知乎拦截官方账号推广消息出现异常：${err}`);
+            console.log(`知乎拦截官方账号推广消息出现异常：${err}`);
         }
         break;
 
@@ -117,7 +117,7 @@ switch (true) {
             obj['data'] = newItems;
             body = JSON.stringify(obj);
         } catch (err) {
-            console.error(`知乎屏蔽官方营销消息出现异常：${err}`);
+            console.log(`知乎屏蔽官方营销消息出现异常：${err}`);
         }
         break;
 
@@ -135,7 +135,7 @@ switch (true) {
                 }
             }
         } catch (err) {
-            console.error(`知乎去除预置关键字广告出现异常：${err}`);
+            console.log(`知乎去除预置关键字广告出现异常：${err}`);
         }
         break;
 
@@ -149,11 +149,11 @@ switch (true) {
                 body = JSON.stringify(obj);
             }
         } catch (err) {
-            console.error(`优化知乎软件配置出现异常：${err}`);
+            console.log(`优化知乎软件配置出现异常：${err}`);
         }
         break;
     default:
-        console.error(`URL: ${$request.url}`);
+        console.log(`unhandled URL: ${$request.url}`);
         break;
 }
 
