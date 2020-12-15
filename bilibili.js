@@ -7,6 +7,10 @@ switch (true) {
             let obj = JSON.parse($response.body);
             let items = [];
             for (let item of obj['data']['items']) {
+                let itemStr = JSON.stringify(item)
+                if (itemStr.indexOf("广告") >= 0) { continue; }
+                if (itemStr.indexOf("招聘") >= 0) { continue; }
+                if (itemStr.indexOf("岗位") >= 0) { continue; }
                 if (item.hasOwnProperty('banner_item')) {
                     let bannerItems = [];
                     for (let banner of item['banner_item']) {
@@ -26,7 +30,7 @@ switch (true) {
             console.log(`推荐去广告出现异常：${err}`);
         }
         break;
-        // 开屏广告处理
+    // 开屏广告处理
     case /^https?:\/\/app\.bilibili\.com\/x\/v2\/splash\/list/.test($request.url):
         try {
             let obj = JSON.parse($response.body);
@@ -49,7 +53,7 @@ switch (true) {
             console.log(`开屏广告处理出现异常：${err}`);
         }
         break;
-        // 标签页处理，如去除会员购等等
+    // 标签页处理，如去除会员购等等
     case /^https?:\/\/app\.bilibili\.com\/x\/resource\/show\/tab/.test($request.url):
         try {
             const tabList = ['直播', '推荐', '热门', '追番', '影视'];
@@ -73,7 +77,7 @@ switch (true) {
             console.log(`标签页处理出现异常：${err}`);
         }
         break;
-        // 我的页面处理，去除一些推广按钮
+    // 我的页面处理，去除一些推广按钮
     case /^https?:\/\/app\.bilibili\.com\/x\/v2\/account\/mine/.test($request.url):
         try {
             const item0List = ['离线缓存', '历史记录', '我的收藏', '稍后再看'];
@@ -97,7 +101,7 @@ switch (true) {
             console.log(`我的页面处理出现异常：${err}`);
         }
         break;
-        // 直播去广告
+    // 直播去广告
     case /^https?:\/\/api\.live\.bilibili\.com\/xlive\/app-room\/v1\/index\/getInfoByRoom/.test($request.url):
         try {
             let obj = JSON.parse($response.body);
@@ -107,7 +111,7 @@ switch (true) {
             console.log(`直播去广告出现异常：${err}`);
         }
         break;
-        // 追番去广告
+    // 追番去广告
     case /^https?:\/\/api\.bilibili\.com\/pgc\/page\/bangumi/.test($request.url):
         try {
             let obj = JSON.parse($response.body);
