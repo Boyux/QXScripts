@@ -1,2 +1,4 @@
-^https?:\/\/www\.inoreader\.com\/adv\/ url reject-200
+hostname = *.inoreader.com
+
+^https?:\/\/inoreader\.com\/reader\/api\/0\/stream\/items\/contents url script-response-body https://raw.githubusercontent.com/Boyux/QXScripts/main/inoreader.js
 ^https?:\/\/(www\.)?google\.cn url 302 https://www.google.com
