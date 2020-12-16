@@ -1,4 +1,2 @@
-hostname = www.google.com, www.inoreader.com
-
 ^https?:\/\/www\.inoreader\.com\/adv\/ url reject-200
 ^https?:\/\/(www\.)?google\.cn url 302 https://www.google.com
