@@ -1,4 +1,6 @@
-hostname = inoreader.com
+hostname = inoreader.com, *.googlevideo.com
 
 ^https?:\/\/inoreader\.com\/reader\/api\/0\/stream\/items\/contents url script-response-body https://raw.githubusercontent.com/Boyux/QXScripts/main/inoreader.js
 ^https?:\/\/(www\.)?google\.cn url 302 https://www.google.com
+(^https?:\/\/[\w-]+\.googlevideo\.com\/.+)(ctier=L)(&.+) url 302 $1$3
+^https?:\/\/[\w-]+\.googlevideo\.com\/.+&(oad|ctier) url reject
