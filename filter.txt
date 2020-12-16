@@ -1,0 +1,2 @@
+host-suffix, apple.com, direct
+host-suffix, icloud.com, direct
