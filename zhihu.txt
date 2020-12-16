@@ -7,7 +7,7 @@ hostname = *.zhihu.com
 ^https?:\/\/api\.zhihu\.com\/(moments|topstory)(\/|\?)?(recommend|action=|feed_type=)(?!\/people) url script-response-body https://raw.githubusercontent.com/Boyux/QXScripts/main/zhihu.js
 ^https?:\/\/sugar\.zhihu\.com\/\w+?_adreaper url reject-200
 vdn\.vzuu\.com url reject-200
-vdn?\.vzuu\.com url reject-200
+vdn\d?\.vzuu\.com url reject-200
 
 # 知乎回答列表去广告
 ^https?:\/\/api\.zhihu\.com\/v4\/questions url script-response-body https://raw.githubusercontent.com/Boyux/QXScripts/main/zhihu.js
