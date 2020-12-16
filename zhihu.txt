@@ -1,4 +1,4 @@
-hostname = www.zhihu.com, api.zhihu.com, appcloud2.zhihu.com, zhuanlan.zhihu.com
+hostname = *.zhihu.com
 
 # 知乎处理用户信息
 ^https?:\/\/api\.zhihu\.com\/people\/((?!self).)*$ url script-response-body https://raw.githubusercontent.com/Boyux/QXScripts/main/zhihu.js
