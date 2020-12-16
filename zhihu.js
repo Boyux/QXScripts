@@ -161,5 +161,5 @@ switch (true) {
 if (body) {
     $done({ body: body });
 } else {
-    $done();
+    $done({});
 }
