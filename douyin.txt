@@ -1,0 +1,4 @@
+hostname = *.amemv.com
+
+^https?:\/\/(.*)\.amemv\.com\/aweme\/v2\/(follow\/)?feed\/ url 302 https://$1.amemv.com/aweme/v1/$2feed/
+^https?:\/\/.*\.amemv\.com\/aweme\/v1\/(feed|mix\/aweme|aweme\/post|(multi\/)?aweme\/detail|follow\/feed|nearby\/feed|search\/item|general\/search\/single|hot\/search\/video\/list)\/ url script-response-body https://raw.githubusercontent.com/Boyux/QXScripts/main/douyin.js
