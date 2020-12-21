@@ -14,12 +14,14 @@ switch (true) {
                 if (item.hasOwnProperty('banner_item')) {
                     let bannerItems = [];
                     for (let banner of item['banner_item']) {
-                        if (banner['is_ad'] != true) {
+                        if (banner['is_ad'] != true && banner['is_ad_loc'] != ture) {
                             bannerItems.push(banner);
                         }
                     }
-                    item['banner_item'] = bannerItems;
-                    items.push(item);
+                    if (bannerItems.length > 0) {
+                        item['banner_item'] = bannerItems;
+                        items.push(item);
+                    }
                 } else if (!item.hasOwnProperty('ad_info') && (item['card_type'] === 'small_cover_v2' || item['card_type'] === 'large_cover_v1')) {
                     items.push(item);
                 }
@@ -122,6 +124,17 @@ switch (true) {
             body = JSON.stringify(obj);
         } catch (err) {
             console.log(`追番去广告出现异常：${err}`);
+        }
+        break;
+    // 动态去广告
+    case /https?:\/\/api\.bilibili\.com\/pgc\/season\/app\/related\/recommend\?/.test($request.url):
+        try {
+            let obj = JSON.parse($response.body);
+            let cards = obj.data.cards.filter(e => { return true ? e.hasOwnProperty('display') : false });
+            obj.data.cards = cards;
+            body = JSON.stringify(obj);
+        } catch (err) {
+            console.log(`动态去广告出现异常：${err}`);
         }
         break;
     default:
