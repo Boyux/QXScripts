@@ -12,10 +12,11 @@ try {
 }
 
 function filter_data(data) {
+    var array = [];
     for (var i = data.length - 1; i >= 0; i--) {
         if (data[i].aweme_info) {
             if (data[i].aweme_info.is_ads === true) {
-                data.splice(i, 1);
+                continue;
             } else if (data[i].aweme_info.video) {
                 data[i].aweme_info.status.reviewed = 1;
                 data[i].aweme_info.video_control.prevent_download_type = 0;
@@ -37,11 +38,13 @@ function filter_data(data) {
             let download = data[i].aweme.video.download_addr;
             data[i].aweme.video.download_suffix_logo_addr = download;
         }
+        array.push(data[i]);
     }
-    return data;
+    return array;
 }
 
 function filter_list(list) {
+    var array = []
     for (var i = list.length - 1; i >= 0; i--) {
         if (list[i].video && list[i].is_ads != true) {
             list[i].video_control.allow_download = true;
@@ -53,10 +56,11 @@ function filter_list(list) {
             let download = list[i].video.download_addr;
             list[i].video.download_suffix_logo_addr = download;
         } else {
-            list.splice(i, 1);
+            continue;
         }
+        array.push(list[i]);
     }
-    return list;
+    return array;
 }
 
 function filter_detail(detail) {
