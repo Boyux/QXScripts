@@ -44,6 +44,7 @@ function filter_data(data) {
 }
 
 function filter_list(list) {
+    console.log(list);
     var array = []
     for (var i = list.length - 1; i >= 0; i--) {
         if (list[i].video && list[i].is_ads != true) {
