@@ -1,4 +1,4 @@
-host-suffix, .cn, direct
+host-suffix, cn, direct
 
 host-suffix, apple.com, direct
 host-suffix, icloud.com, direct
